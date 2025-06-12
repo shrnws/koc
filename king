@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple UI</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        form {
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        select, input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function openLink() {
+            const dropdown = document.getElementById("dropdown");
+            const searchInput = document.getElementById("search").value;
+
+            if (searchInput) {
+                let url = '';
+                switch (dropdown.value) {
+                    case "ORDER_DETAILS":
+                        url = `https://admin.kingofcards.in/orderDetails?orderId=${searchInput}`;
+                        break;
+                    case "PRINT_ORDER":
+                        url = `https://admin.kingofcards.in/printOrder1?orderId=${searchInput}`;
+                        break;
+                    case "PRINT_ADDRESS":
+                        url = `https://admin.kingofcards.in/printaddress1?orderId=${searchInput}`;
+                        break;
+                    default:
+                        alert("Please select a valid option.");
+                        return;
+                }
+                window.open(url, '_blank');
+            } else {
+                alert("Please enter an order ID.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <form onsubmit="event.preventDefault(); openLink();">
+        <select id="dropdown">
+            <option value="">--Select--</option>
+            <option value="ORDER_DETAILS">Order Details</option>
+            <option value="PRINT_ORDER">Print Order</option>
+            <option value="PRINT_ADDRESS" selected >Print Address</option>
+        </select>
+        <input type="text" id="search" placeholder="Type an Order ID ...">
+        <button type="submit">GO</button>
+    </form>
+</body>
+</html>
